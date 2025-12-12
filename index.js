@@ -7,8 +7,15 @@ const { Pool } = require("pg");
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-app.use(cors({origin:"https://taskflow-pi-sepia.vercel.app",
-              credentials:true}));
+app.use(cors({
+  origin: "https://taskflow-pi-sepia.vercel.app",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.options("*", cors());
+
 app.use(express.json());
 app.use(cookieParser());
 function auth(req, res, next) {
@@ -223,8 +230,8 @@ app.delete("/tasks/:id", auth, async (req, res) => {
 app.post("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax"
+    secure: true,
+    sameSite: "none"
   });
 
   res.json({ message: "Logged out successfully" });
