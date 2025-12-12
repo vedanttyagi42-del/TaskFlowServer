@@ -7,7 +7,7 @@ const { Pool } = require("pg");
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-app.use(cors({origin:"https://taskflow-pi-sepia.vercel.app/",
+app.use(cors({origin:"https://taskflow-pi-sepia.vercel.app",
               credentials:true}));
 app.use(express.json());
 app.use(cookieParser());
