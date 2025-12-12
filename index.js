@@ -7,7 +7,7 @@ const { Pool } = require("pg");
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 function auth(req, res, next) {
@@ -75,8 +75,8 @@ app.post("/signup", async (req, res) => {
 
     res.cookie("token", token, {
         httpOnly: true,   // frontend JS cannot read it (more secure)
-        secure: false,    // true only in production (HTTPS)
-        sameSite: "lax",  // or "strict"
+        secure: true,    // true only in production (HTTPS)
+        sameSite: "none",  // or "strict"
     });
     res.json({
       success: true,
@@ -118,8 +118,8 @@ app.post("/login", async (req, res) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: true,
+    sameSite: "none",
   });
 
   res.json({ message: "Logged in" });
