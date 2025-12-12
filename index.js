@@ -8,7 +8,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: "https://taskflow-pi-sepia.vercel.app",
+  origin: "https://taskflowvedant.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
