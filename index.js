@@ -7,8 +7,12 @@ const { Pool } = require("pg");
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
+const allowedOrigins = [
+  "https://taskflowvedant.vercel.app",
+  "http://localhost:3000"
+]
 app.use(cors({
-  origin: "https://taskflowvedant.vercel.app",
+  origin: allowedOrigins,
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
