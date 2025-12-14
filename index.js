@@ -91,7 +91,11 @@ app.post("/signup", async (req, res) => {
     });
     res.json({
       success: true,
-      message: "User registered successfully"
+      user: {
+        email: user.email,
+        username: user.username,
+        fullname: user.display_name
+      }
     });
 
   } catch (err) {
@@ -133,7 +137,15 @@ app.post("/login", async (req, res) => {
     sameSite: "none",
   });
 
-  res.json({ message: "Logged in" });
+  res.json({
+  success: true,
+  user: {
+    email: user.email,
+    username: user.username,
+    fullname: user.display_name
+  }
+});
+
 });
 
 // Protected route
